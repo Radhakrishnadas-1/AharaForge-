@@ -1,2 +1,423 @@
-# AharaForge-
-AharaForge is an AI-powered nutrition platform that makes healthy eating simple. We help individuals and families create personalized meal plans, reduce food waste, and build sustainable food habits — all through one smart app.
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AharaForge — Healthy Eating Made Simple</title>
+
+<!-- Meta -->
+<meta name="description" content="AharaForge is an AI-powered nutrition app that helps individuals and families create personalized meal plans, reduce food waste, and build sustainable eating habits." />
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#ffffff;
+    --primary:#3BB143; /* green */
+    --accent:#FF914D;  /* orange */
+    --muted:#6b6b6b;
+    --card:#fbfbfb;
+    --maxw:980px;
+    --radius:12px;
+    --shadow: 0 6px 20px rgba(23,23,23,0.06);
+  }
+  *{box-sizing:border-box}
+  body{font-family:'Poppins',sans-serif;margin:0;background:linear-gradient(180deg,#fff 0%, #fbfbfb 100%);color:#222}
+  a{color:var(--primary);text-decoration:none}
+  header{position:sticky;top:0;background:#fff;z-index:40;box-shadow:0 2px 8px rgba(0,0,0,0.03)}
+  .nav-wrap{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 16px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .logo{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,var(--primary),var(--accent));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:18px;box-shadow:var(--shadow)}
+  .brand h1{font-size:16px;margin:0}
+  nav{display:flex;gap:14px;align-items:center}
+  .menu-link{padding:8px 12px;border-radius:8px;color:#333;font-weight:600}
+  .menu-link:hover{background:#f4f6f8}
+  .cta{background:var(--primary);color:#fff;padding:9px 14px;border-radius:10px;font-weight:700}
+  .hamburger{display:none;border:0;background:none;padding:10px}
+  main{max-width:var(--maxw);margin:28px auto;padding:0 16px}
+  /* hero */
+  .hero{display:flex;gap:28px;align-items:center;justify-content:space-between;padding:28px;background:linear-gradient(180deg,rgba(59,177,67,0.06),rgba(255,145,77,0.02));border-radius:16px;box-shadow:var(--shadow)}
+  .hero-left{max-width:520px}
+  .tag{display:inline-block;padding:6px 10px;background:rgba(59,177,67,0.12);color:var(--primary);border-radius:999px;font-weight:700;font-size:13px}
+  .hero h2{font-size:28px;margin:12px 0 8px}
+  .hero p{color:var(--muted);line-height:1.5}
+  .hero-actions{margin-top:16px;display:flex;gap:12px;align-items:center}
+  .btn{padding:10px 14px;border-radius:10px;border:0;font-weight:700;cursor:pointer}
+  .btn-primary{background:var(--primary);color:#fff}
+  .btn-outline{background:#fff;border:1px solid #eee}
+  .hero-right{width:320px;display:flex;align-items:center;justify-content:center}
+  .mock{width:280px;border-radius:14px;overflow:hidden;box-shadow:0 20px 40px rgba(20,20,20,0.08);background:#fff;border:1px solid #fff}
+  /* sections */
+  section{margin:28px 0;padding:18px}
+  .grid{display:grid;gap:16px}
+  .features-grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
+  .card{background:var(--card);padding:16px;border-radius:12px;box-shadow:var(--shadow);border:1px solid #fff}
+  .feature-icon{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--primary));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+  .muted{color:var(--muted)}
+  .center{text-align:center}
+  /* team */
+  .team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+  .avatar{width:120px;height:120px;border-radius:12px;object-fit:cover;display:block;margin:0 auto 12px}
+  .small{font-size:14px}
+  /* contact form */
+  .form-row{display:flex;gap:12px}
+  .input, textarea{width:100%;padding:10px;border-radius:10px;border:1px solid #e6e6e6}
+  textarea{min-height:120px;resize:vertical}
+  /* footer */
+  footer{border-top:1px solid #f1f1f1;padding:18px;text-align:center;color:var(--muted)}
+  /* responsive */
+  @media (max-width:880px){
+    .hero{flex-direction:column;align-items:flex-start}
+    nav{display:none}
+    .hamburger{display:block}
+    .hero-right{width:100%}
+  }
+  /* page content visibility */
+  .page{display:none}
+  .page.active{display:block}
+  /* simple animations */
+  .fade-in{animation:fadeUp .5s ease both}
+  @keyframes fadeUp{from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:none}}
+  /* small helper */
+  .pill{display:inline-block;padding:6px 10px;background:#fff;border-radius:999px;border:1px solid #eee;font-weight:700}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav-wrap">
+    <div class="brand">
+      <div class="logo" aria-hidden>AF</div>
+      <div>
+        <h1>AharaForge</h1>
+        <div style="font-size:12px;color:var(--muted)">Healthy Eating · AI · Sustainability</div>
+      </div>
+    </div>
+
+    <nav id="topNav" aria-label="Main navigation">
+      <a href="/#/" class="menu-link" data-link>Home</a>
+      <a href="/#/features" class="menu-link" data-link>Features</a>
+      <a href="/#/prototype" class="menu-link" data-link>Prototype</a>
+      <a href="/#/team" class="menu-link" data-link>Team</a>
+      <a href="/#/contact" class="menu-link" data-link>Contact</a>
+      <a class="cta menu-link" href="https://aharaforge.tiiny.site/" target="_blank">Open Live</a>
+    </nav>
+
+    <button class="hamburger" id="hambBtn" aria-label="Open menu">☰</button>
+  </div>
+</header>
+
+<main>
+  <!-- HOME page -->
+  <div id="home" class="page active fade-in" role="main">
+    <section class="hero">
+      <div class="hero-left">
+        <div class="tag">AharaForge</div>
+        <h2>Healthy Eating Made Simple</h2>
+        <p>AharaForge helps families and busy professionals plan personalized meals, reduce food waste, and build healthy habits — powered by AI and designed for Indian kitchens.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" onclick="navigateTo('/#/features')">Explore Features</button>
+          <button class="btn btn-outline" onclick="navigateTo('/#/prototype')">Try Prototype</button>
+        </div>
+
+        <div style="margin-top:18px;color:var(--muted);font-size:14px">
+          <strong>Quick facts:</strong>
+          <ul style="margin:8px 0 0;padding-left:18px;color:var(--muted)">
+            <li>Target: Urban professionals & families (18–40)</li>
+            <li>Core tech: AI recommendation engine, Firebase backend</li>
+            <li>Primary revenue: Subscription model (launch later)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="mock">
+          <!-- App mockup / screenshot placeholder -->
+          <img src="https://via.placeholder.com/280x520.png?text=AharaForge+App+Preview" alt="App preview" style="width:100%;display:block">
+        </div>
+      </div>
+    </section>
+
+    <!-- Problem & Solution -->
+    <section>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
+        <h3 style="margin:0">Problem & Solution</h3>
+        <div class="pill">Focus: Health + Waste</div>
+      </div>
+      <div style="margin-top:12px;color:var(--muted)">
+        <strong>Problem:</strong> Many urban families and professionals struggle to maintain consistent, personalized diets. This leads to poor health outcomes and avoidable household food waste. <br><br>
+        <strong>Solution:</strong> AharaForge provides AI-powered personalized meal plans, practical recipes, meal reminders, and a food-waste tracker that suggests reuse ideas — reducing waste and improving health.
+      </div>
+    </section>
+  </div>
+
+  <!-- FEATURES page -->
+  <div id="features" class="page fade-in" role="region" aria-labelledby="featuresTitle">
+    <section>
+      <h2 id="featuresTitle">Features — What AharaForge Does</h2>
+      <p class="muted">A single product that combines personalization, convenience, and sustainability.</p>
+
+      <div class="grid features-grid" style="margin-top:14px">
+        <div class="card">
+          <div style="display:flex;gap:12px;align-items:center">
+            <div class="feature-icon">MP</div>
+            <div>
+              <strong>Personalized Meal Plans</strong>
+              <div class="muted small">AI-generated plans tailored to goals, allergies, and local Indian cuisines.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div style="display:flex;gap:12px;align-items:center">
+            <div class="feature-icon">AI</div>
+            <div>
+              <strong>AI Nutrition Coach</strong>
+              <div class="muted small">Conversational guidance, simple recipes, and on-demand suggestions.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div style="display:flex;gap:12px;align-items:center">
+            <div class="feature-icon">FW</div>
+            <div>
+              <strong>Food Waste Tracker</strong>
+              <div class="muted small">Log leftovers and get quick recipe ideas to reuse ingredients.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div style="display:flex;gap:12px;align-items:center">
+            <div class="feature-icon">RM</div>
+            <div>
+              <strong>Reminders & Notifications</strong>
+              <div class="muted small">Set meal reminders; receive push/local notifications (Expo / FCM).</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div style="display:flex;gap:12px;align-items:center">
+            <div class="feature-icon">PR</div>
+            <div>
+              <strong>Progress & Rewards</strong>
+              <div class="muted small">Track streaks, calories saved, and earn badges for sustainable behaviour.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div style="display:flex;gap:12px;align-items:center">
+            <div class="feature-icon">IN</div>
+            <div>
+              <strong>Integrations & Partnerships</strong>
+              <div class="muted small">Future integrations with grocery partners, local stores and health devices.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr style="margin:20px 0;border:none;border-top:1px solid #f1f1f1">
+
+      <h3>Everything about AharaForge (Full Product Summary)</h3>
+      <div class="muted" style="margin-top:10px;line-height:1.5">
+        <strong>Vision:</strong> To help every household eat healthier with less waste — combining nutrition science, AI, and simple habit design. <br><br>
+
+        <strong>Target Customers:</strong> Urban working professionals and young families (18–40). Secondary: college students and fitness enthusiasts. <br><br>
+
+        <strong>Core Technology:</strong> AI recommendation engine (OpenAI/Gemini), Firebase backend (Auth, Firestore, Cloud Functions), and mobile frontend (React Native/Expo or Flutter). <br><br>
+
+        <strong>Business Model:</strong> Freemium: core planning and tracking free; premium subscription unlocks advanced AI personalization, grocery lists, and expert tips. Later revenue channels: partnerships, white-labeling for corporates. <br><br>
+
+        <strong>Data & Privacy:</strong> Stores minimal personal info (preferences, goals). Keys and AI calls are server-side (Cloud Functions) to protect API keys. Users can request data deletion. <br><br>
+
+        <strong>Validation:</strong> Prototype tested with early users (aim for 50+ testers). Use qualitative interviews and in-app metrics to measure engagement and willingness to pay. <br><br>
+
+        <strong>Roadmap:</strong>
+        <ul style="margin:6px 0 0 18px;color:var(--muted)">
+          <li>Phase 1: Core app with meal plans, reminders, waste tracker</li>
+          <li>Phase 2: AI personalization improvements and partnerships</li>
+          <li>Phase 3: Scale via B2B pilots (schools, workplaces) and paid tiers</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <!-- PROTOTYPE page -->
+  <div id="prototype" class="page fade-in" role="region" aria-labelledby="protoTitle">
+    <section>
+      <h2 id="protoTitle">Prototype / Demo</h2>
+      <p class="muted">Below is a demo preview of the AharaForge prototype. Click "Open Prototype" to try the interactive flow (Figma or hosted prototype).</p>
+      <div style="margin-top:14px" class="card">
+        <div style="display:flex;gap:12px;flex-direction:column">
+          <img src="https://via.placeholder.com/800x360.png?text=Prototype+Preview" alt="Prototype GIF" style="width:100%;border-radius:8px">
+          <div style="margin-top:8px">
+            <a class="btn btn-primary" href="https://www.figma.com/file/EXAMPLE" target="_blank" rel="noopener">Open Prototype</a>
+            <span style="margin-left:12px;color:var(--muted)">If you do not have an interactive prototype link, use screenshots here.</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin-top:18px">How the prototype demonstrates core flows</h3>
+      <ul style="color:var(--muted)">
+        <li>User onboarding & basic profile</li>
+        <li>Generate 1-day personalized meal plan using AI</li>
+        <li>Mark meals as eaten, see waste saved metrics</li>
+        <li>Log leftover items and get reuse recipes</li>
+      </ul>
+    </section>
+  </div>
+
+  <!-- TEAM page -->
+  <div id="team" class="page fade-in" role="region" aria-labelledby="teamTitle">
+    <section>
+      <h2 id="teamTitle">Team</h2>
+      <p class="muted">A small, focused team building AharaForge.</p>
+
+      <div class="team-grid" style="margin-top:14px">
+        <div class="card center">
+          <!-- Replace manthan.jpg with your actual image file name in the same folder -->
+          <img src="manthan.jpg" alt="Manthan Pawar" class="avatar" onerror="this.src='https://via.placeholder.com/120?text=Manthan'">
+          <h3 style="margin:6px 0 2px">Manthan Pawar</h3>
+          <div class="muted small">Founder & Product Lead</div>
+          <div style="margin-top:8px;font-size:14px;color:var(--muted)">Focus: product vision, branding, outreach</div>
+        </div>
+
+        <div class="card center">
+          <!-- Vipul placeholder - replace vipul-placeholder.png with his photo later -->
+          <img src="vipul-placeholder.png" alt="Vipul" class="avatar" onerror="this.src='https://via.placeholder.com/120?text=Vipul'">
+          <h3 style="margin:6px 0 2px">Vipul</h3>
+          <div class="muted small">Co-founder & Developer</div>
+          <div style="margin-top:8px;font-size:14px;color:var(--muted)">Focus: app development, backend, AI integration</div>
+        </div>
+      </div>
+
+      <div style="margin-top:18px" class="muted">
+        <strong>Contact the team:</strong><br>
+        Email: <a href="mailto:manthanpawar011@gmail.com">manthanpawar011@gmail.com</a><br>
+        Phone: <a href="tel:+919021322810">+91 90213 22810</a><br>
+        LinkedIn: <a href="https://www.linkedin.com/in/manthan-pawar-579a65381" target="_blank">Manthan Pawar</a>
+      </div>
+    </section>
+  </div>
+
+  <!-- CONTACT page -->
+  <div id="contact" class="page fade-in" role="region" aria-labelledby="contactTitle">
+    <section>
+      <h2 id="contactTitle">Contact</h2>
+      <p class="muted">Questions, partnerships, or media — drop us a message.</p>
+
+      <div style="margin-top:12px;display:grid;grid-template-columns:1fr;gap:12px;max-width:720px">
+        <div class="card">
+          <form id="contactForm" onsubmit="submitContact(event)">
+            <div style="margin-bottom:10px">
+              <input class="input" id="name" placeholder="Your name" required>
+            </div>
+            <div style="margin-bottom:10px">
+              <input class="input" id="email" placeholder="Your email" type="email" required>
+            </div>
+            <div style="margin-bottom:10px">
+              <textarea id="message" placeholder="Message" required></textarea>
+            </div>
+            <div style="display:flex;gap:10px;align-items:center">
+              <button class="btn btn-primary" type="submit">Send Message</button>
+              <div id="contactStatus" class="muted small" aria-live="polite"></div>
+            </div>
+            <div style="margin-top:12px;font-size:13px;color:var(--muted)">This form opens your email client to send the message. For automatic in-app messaging, we can add a Firebase-backed form later.</div>
+          </form>
+        </div>
+
+        <div class="card muted">
+          <h4 style="margin-top:0">Direct Contact</h4>
+          <p>Email: <a href="mailto:manthanpawar011@gmail.com">manthanpawar011@gmail.com</a><br>
+          Phone: <a href="tel:+919021322810">+91 90213 22810</a><br>
+          LinkedIn: <a href="https://www.linkedin.com/in/manthan-pawar-579a65381" target="_blank">Manthan Pawar</a></p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</main>
+
+<footer>
+  <div style="max-width:var(--maxw);margin:0 auto;padding:12px 16px">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div class="logo" style="width:38px;height:38px;font-size:15px">AF</div>
+        <div>
+          <div style="font-weight:700">AharaForge</div>
+          <div style="font-size:13px;color:var(--muted)">Healthy eating made simple</div>
+        </div>
+      </div>
+
+      <div style="color:var(--muted);font-size:13px">© 2025 AharaForge · All rights reserved · <a href="#/privacy" onclick="alert('Privacy: data stored only for demo. Add policy link.')">Privacy</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- Minimal JS for routing + menu + form -->
+<script>
+  // Simple client-side "routing" using hash
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const node = document.getElementById(id);
+    if(node) node.classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+
+  function navigateTo(hash) {
+    // set window.location hash to simulate new page
+    window.location.hash = hash;
+    handleRoute();
+  }
+
+  function handleRoute() {
+    const h = window.location.hash || '#/';
+    // map hash to page id
+    if(h === '#/' || h === '#') showPage('home');
+    else if(h.startsWith('#/features')) showPage('features');
+    else if(h.startsWith('#/prototype')) showPage('prototype');
+    else if(h.startsWith('#/team')) showPage('team');
+    else if(h.startsWith('#/contact')) showPage('contact');
+    else showPage('home');
+    // update active nav links
+    document.querySelectorAll('[data-link]').forEach(a=>{
+      a.style.fontWeight = (a.getAttribute('href') === h)?'800':'600';
+    });
+  }
+
+  window.addEventListener('hashchange', handleRoute);
+  window.addEventListener('load', handleRoute);
+
+  // mobile hamburger
+  const hamb = document.getElementById('hambBtn');
+  hamb.addEventListener('click', ()=>{
+    const nav = document.getElementById('topNav');
+    if(nav.style.display === 'flex') nav.style.display = 'none';
+    else nav.style.display = 'flex';
+  });
+
+  // contact form - opens mail client
+  function submitContact(e){
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const msg = document.getElementById('message').value.trim();
+    const subject = encodeURIComponent('AharaForge message from ' + name);
+    const body = encodeURIComponent('Name: ' + name + '\\nEmail: ' + email + '\\n\\nMessage:\\n' + msg);
+    const mailto = 'mailto:manthanpawar011@gmail.com?subject=' + subject + '&body=' + body;
+    document.getElementById('contactStatus').innerText = 'Opening email client...';
+    setTimeout(()=>{ window.location.href = mailto; document.getElementById('contactStatus').innerText='If no email app opens, copy & send to manthanpawar011@gmail.com'; }, 600);
+  }
+
+  // accessibility: close menu when clicking a link on mobile
+  document.querySelectorAll('#topNav a').forEach(a=>{
+    a.addEventListener('click', ()=> {
+      if(window.innerWidth < 880) document.getElementById('topNav').style.display = 'none';
+    })
+  });
+</script>
+</body>
+</html>
